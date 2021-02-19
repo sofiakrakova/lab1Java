@@ -11,10 +11,20 @@ public class MyContainer<T> implements IMyContainer<T> {
     /**
      * Constructor.
      */
-    MyContainer() {
+    public MyContainer() {
         this.length = mainSize;
         data = new Object[length];
         this.lastElementIndex = 0;
+    }
+
+    /**
+     * Method to checking the index
+     * @param index - the position of the item
+     */
+    private void validateIndex(int index)
+    {
+        if (index < 0 || index >= lastElementIndex)
+            throw new IndexOutOfBoundsException("Invalid index");
     }
     /**
      * Method for adding items to the container
@@ -35,22 +45,16 @@ public class MyContainer<T> implements IMyContainer<T> {
 
     /**
      * Method for getting element by index
-     * @param index
+     * @param index - the position of the item to get
      * @return item by index
      */
-    public T get(int index) {
+    public T get(int index)
+    {
+        validateIndex(index);
         return (T) data[index];
+
     }
 
-    /**
-     * Method for showing all elements from container
-     */
-    public void showAll()
-    {
-        for(int i=0;i<lastElementIndex;i++)
-            System.out.print(data[i]);
-        System.out.println();
-    }
 
     /**
      * Method for clearing the container
@@ -67,13 +71,15 @@ public class MyContainer<T> implements IMyContainer<T> {
      * @return removed object
      */
     public T removeAt(int index) {
+        validateIndex(index);
         this.lastElementIndex--;
-        Object temp = data[index];
+        Object temp = data[ index ];
         for (int i = index; i < this.lastElementIndex; i++) {
-            this.data[i] = this.data[i + 1];
+            this.data[ i ] = this.data[ i + 1 ];
         }
-        System.out.println("Element with index = " + index + " removed");
+
         return (T) temp;
+
     }
 
     /**
@@ -90,7 +96,6 @@ public class MyContainer<T> implements IMyContainer<T> {
                     i++;
                 }
                 this.lastElementIndex--;
-                System.out.println("Element = " + value + " removed");
                 return true;
             }
         }

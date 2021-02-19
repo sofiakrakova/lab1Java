@@ -3,6 +3,5 @@ public interface IMyContainer<T> {
      T get(int index);
      T removeAt(int index);
      boolean remove(T number);
-     public void showAll();
      public void clearAll();
 }

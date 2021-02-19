@@ -11,12 +11,7 @@ public class Main {
             container.add(scan.nextInt());
         }
         container.get(3);
-        container.showAll();
         container.removeAt(4);
-        container.showAll();
-        container.remove(1);
-        container.showAll();
-        System.out.println(container.remove(5));
 
     }
 }
